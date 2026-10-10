@@ -1,0 +1,88 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "app": {
+      "root": ".",
+      "framework": "express"
+    },
+    "client": {
+      "root": "client",
+      "framework": "vite"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "app"
+      }
+    },
+    {
+      "source": "/api",
+      "destination": {
+        "service": "app"
+      }
+    },
+    {
+      "source": "/admin(.*)",
+      "destination": {
+        "service": "app"
+      }
+    },
+    {
+      "source": "/admin-login",
+      "destination": {
+        "service": "app"
+      }
+    },
+    {
+      "source": "/storefront(.*)",
+      "destination": {
+        "service": "app"
+      }
+    },
+    {
+      "source": "/legacy(.*)",
+      "destination": {
+        "service": "app"
+      }
+    },
+    {
+      "source": "/react/(.*)",
+      "destination": {
+        "service": "client"
+      }
+    },
+    {
+      "source": "/react",
+      "destination": {
+        "service": "client"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "app"
+      }
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization, X-Requested-With"
+        }
+      ]
+    }
+  ]
+}
